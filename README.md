@@ -1,6 +1,6 @@
 # Container Forest — landing
 
-Landing page and brand assets for [Container Forest](https://github.com/lepterion/container-forest).
+Landing page and brand assets for [Container Forest](https://github.com/container-forest/container-forest).
 
 - `landing-site/` — the landing page (`index.html` + hero images)
 - `landing/` — earlier copy of the landing page
@@ -9,4 +9,4 @@ Landing page and brand assets for [Container Forest](https://github.com/lepterio
 - `scene.html`, `scene.js` — the three.js scene used to render the hero images
 - `renders/`, `*-4k.png` — full-resolution renders
 
-[Then landing page itself](https://denysenkoliubov.github.io/container-forest-landing/landing-site/)
+[The landing page itself](https://container-forest.github.io/landing/landing-site/)
