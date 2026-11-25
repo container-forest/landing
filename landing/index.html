@@ -233,7 +233,7 @@ table { border-collapse: collapse; width: 100%; font-size: 14px; }
 
 /* ---------- roles ---------- */
 .roles-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--moss); }
-.roles { min-width: 620px; }
+.roles { min-width: 720px; }
 .roles th, .roles td { padding: 14px 16px; text-align: center; border-top: 1px solid var(--line); font-size: 14px; }
 .roles thead th { border-top: 0; font: 700 15px/1.2 var(--display); }
 .roles thead th small { display: block; font: 500 12px/1.3 var(--body); color: var(--fog-faint); margin-top: 4px; }
@@ -276,6 +276,58 @@ table { border-collapse: collapse; width: 100%; font-size: 14px; }
 .member a { font: 400 13px/1 var(--mono); color: var(--sun); text-decoration: none; }
 .member a:hover { text-decoration: underline; }
 
+/* ---------- capabilities ---------- */
+.caps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.cap { background: var(--moss); padding: 22px 22px 24px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.cap .tag { font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--sun); }
+.cap p { color: var(--fog-dim); font-size: 14.5px; }
+.cap code { font-size: 13px; color: var(--fog); }
+@media (max-width: 960px) { .caps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .caps { grid-template-columns: 1fr; } }
+.notyet { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; color: var(--fog-faint); font-size: 14px; }
+.notyet span { padding: 5px 11px; border: 1px dashed var(--line); border-radius: 999px; color: var(--fog-dim); }
+
+/* ---------- real panel screenshots ---------- */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.tab { font: 600 14px/1 var(--body); padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line); background: transparent; color: var(--fog-dim); cursor: pointer; transition: border-color .2s, color .2s, background .2s; }
+.tab:hover { color: var(--fog); }
+.tab[aria-selected="true"] { color: var(--fog); background: var(--moss-2); border-color: color-mix(in oklab, var(--sun) 45%, var(--line)); }
+.shot { margin: 0; display: grid; gap: 14px; }
+.shot .frame { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #0f1311; box-shadow: 0 40px 90px -50px rgba(0, 0, 0, .9); }
+.shot img { display: block; width: 100%; height: auto; }
+.shot.phone .frame { max-width: 340px; margin-inline: auto; border-radius: 28px; }
+.shot figcaption { color: var(--fog-dim); font-size: 15px; }
+.shot:not([hidden]) .frame { animation: shot-in .5s cubic-bezier(.2, .7, .2, 1); }
+@keyframes shot-in { from { opacity: .4; transform: translateY(10px) scale(.99); } }
+
+/* ---------- themes ---------- */
+.themes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 36px; align-items: center; }
+@media (max-width: 900px) { .themes { grid-template-columns: 1fr; } }
+.swatches { display: flex; flex-wrap: wrap; gap: 10px; }
+.sw { display: inline-flex; align-items: center; gap: 9px; padding: 9px 14px 9px 10px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--fog-dim); font: 600 14px/1 var(--body); cursor: pointer; }
+.sw i { width: 16px; height: 16px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .25); }
+.sw[aria-pressed="true"] { color: var(--fog); border-color: var(--c); background: color-mix(in oklab, var(--c) 12%, transparent); }
+.mode { display: inline-flex; margin-top: 16px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.mode button { font: 600 13px/1 var(--body); padding: 9px 14px; background: transparent; color: var(--fog-dim); border: 0; cursor: pointer; }
+.mode button[aria-pressed="true"] { background: var(--moss-2); color: var(--fog); }
+.theme-view .frame { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; aspect-ratio: 1000 / 625; background: var(--moss-2); }
+.theme-view img { display: block; width: 100%; height: 100%; object-fit: cover; transition: opacity .25s; }
+.theme-view img.fading { opacity: .25; }
+.seasons { margin-top: 20px; color: var(--fog-dim); font-size: 15px; max-width: 52ch; }
+
+/* ---------- quick start ---------- */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; counter-reset: step; }
+.step { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; align-items: start; }
+.step::before { counter-increment: step; content: counter(step); width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font: 700 16px/1 var(--display); color: var(--night); background: var(--sun); }
+.step > div { display: grid; gap: 10px; min-width: 0; padding-top: 8px; }
+.step p { color: var(--fog-dim); font-size: 15px; max-width: 70ch; }
+.cmd { display: flex; flex-direction: column; background: var(--night); border: 1px solid var(--line); border-radius: 12px; min-width: 0; }
+.cmd pre { margin: 0; padding: 6px 16px 14px; overflow-x: auto; font: 400 13px/1.7 var(--mono); color: var(--fog-dim); }
+.cmd pre .c { color: var(--fog-faint); }
+.cmd .act { order: -1; align-self: flex-end; margin: 8px 8px 0; }
+.req { margin-bottom: 26px; color: var(--fog-dim); font-size: 15px; max-width: 75ch; }
+.links-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
 /* ---------- footer cta ---------- */
 .final { position: relative; overflow: hidden; padding-block: clamp(70px, 10vw, 120px); }
 .final::before { content: ""; position: absolute; inset: 0; background: url("img/forest-desktop.jpg") center 70% / cover; opacity: .22; filter: saturate(.8); }
@@ -307,13 +359,13 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
       container&#8209;forest
     </a>
     <div class="nav-links">
-      <a href="#features">Можливості</a>
+      <a href="#capabilities">Можливості</a>
+      <a href="#panel">Панель</a>
       <a href="#how">Як працює</a>
-      <a href="#secrets">Секрети</a>
       <a href="#compare">Порівняння</a>
-      <a href="#team">Команда</a>
+      <a href="#start">Встановити</a>
     </div>
-    <a class="btn btn-ghost btn-sm" href="https://github.com/lepterion/container-forest" target="_blank" rel="noopener">
+    <a class="btn btn-ghost btn-sm" href="https://github.com/container-forest/container-forest" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
       GitHub
     </a>
@@ -335,20 +387,20 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
   <canvas class="motes" aria-hidden="true"></canvas>
   <div class="hero-inner wrap">
     <div class="hero-copy">
-      <span class="badge rise"><span class="dot"></span>Альфа-версія · у продакшні з жовтня 2026</span>
+      <span class="badge rise"><span class="dot"></span>v0.12 · відкритий код · Apache-2.0</span>
       <h1 class="rise" style="--dl:.08s">Усі ваші сервери на <em>одній галявині</em></h1>
-      <p class="lede rise" style="--dl:.18s">Керуйте Docker-контейнерами на кількох серверах з однієї вебпанелі, з Discord або з терміналу. Конфігурація живе в git, а секрети в ньому зашифровані.</p>
+      <p class="lede rise" style="--dl:.18s">GitOps для Docker Compose на кількох серверах. Робите push у git, і стеки розгортаються. Керуйте ними з вебпанелі, з терміналу або з Discord, а секрети тримайте в тому ж репозиторії, зашифровані SOPS.</p>
       <div class="hero-cta rise" style="--dl:.28s">
-        <a class="btn btn-sun" href="#demo">
+        <a class="btn btn-sun" href="#panel">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          Подивитися, як це виглядає
+          Подивитися панель
         </a>
-        <a class="btn btn-ghost" href="#how">Як це влаштовано</a>
+        <a class="btn btn-ghost" href="#start">Встановити</a>
       </div>
     </div>
     <div class="facts rise" style="--dl:.4s">
       <div class="fact"><b>0</b><span>відкритих вхідних портів на серверах</span></div>
-      <div class="fact"><b>22</b><span>сервіси команди на трьох серверах уже розгорнуті через нього</span></div>
+      <div class="fact"><b>1</b><span>git-репозиторій для конфігурації й зашифрованих секретів</span></div>
       <div class="fact"><b>3</b><span>способи керувати: панель, Discord, CLI</span></div>
     </div>
   </div>
@@ -387,12 +439,64 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
     </div>
   </section>
 
+  <section id="capabilities" class="band">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Можливості</span>
+        <h2>Що вже вміє container-forest</h2>
+        <p class="lede">Система з жовтня 2026 року керує справжньою продакшн-інфраструктурою. До версії 1.0 мінорний реліз може містити зміни, що ламають сумісність; вони описані в changelog.</p>
+      </div>
+      <div class="caps">
+        <article class="cap reveal"><span class="tag">Агенти</span><p>По одному на сервер, реєстрація одноразовим токеном. Агент сам підключається до центрального сервісу, тож сервер може стояти за NAT без відкритих портів.</p></article>
+        <article class="cap reveal"><span class="tag">Контейнери</span><p>Стан і логи кожного контейнера; запуск, зупинка, перезапуск. Compose-проєкти, запущені на сервері вручну, теж видно й ними можна керувати.</p></article>
+        <article class="cap reveal"><span class="tag">GitOps</span><p>Деплой з публічного чи приватного репозиторію: вручну, після push або з CI. Кожен деплой прив'язаний до коміту, можна вимагати підписані коміти.</p></article>
+        <article class="cap reveal"><span class="tag">Відкат</span><p>Поверніть стек на коміт, який уже був розгорнутий. Стек тримається на ньому, поки ви не скажете повернутися до гілки.</p></article>
+        <article class="cap reveal"><span class="tag">Секрети</span><p>SOPS з окремим age-ключем на сервер або на стек. Через git-фільтр <code>forest</code> секрети в клоні видно відкритим текстом, а комітяться вони зашифрованими.</p></article>
+        <article class="cap reveal"><span class="tag">Явні дії</span><p>restart, redeploy, redeploy with pull і down окремими кнопками, а не одна кнопка «оновити».</p></article>
+        <article class="cap reveal"><span class="tag">Оновлення образів</span><p>Політика образів для стеку: сервіс помічає нові версії образів і сам комітить новий тег у репозиторій стеку.</p></article>
+        <article class="cap reveal"><span class="tag">Ресурси</span><p>Графіки CPU, пам'яті, мережі, диска й процесів для контейнерів, стеків і серверів, сповіщення про високе навантаження. Ті самі цифри в CLI і боті.</p></article>
+        <article class="cap reveal"><span class="tag">Доступ</span><p>Ролі на сервер або на окремий стек, compose-політика сервера (що стекам можна монтувати й запускати) і журнал аудиту.</p></article>
+        <article class="cap reveal"><span class="tag">Вхід</span><p>Пароль, passkey або Discord. Двофакторна автентифікація через застосунок-автентифікатор, яку адміністратор може зробити обов'язковою для всіх.</p></article>
+        <article class="cap reveal"><span class="tag">Discord-бот</span><p>Команди, меню й сповіщення: деплої, впалі контейнери, агенти офлайн, високе навантаження. Права ті самі, що й у панелі.</p></article>
+        <article class="cap reveal"><span class="tag">CLI forest</span><p>Вхід через браузер, персональні API-токени з обмеженнями (лише читання, окремі сервери, строк дії). Усе, що вміє панель.</p></article>
+        <article class="cap reveal"><span class="tag">Панель</span><p>Англійською й українською, з оновленнями наживо. Працює на телефоні, встановлюється як застосунок, має п'ять тем кольорів.</p></article>
+        <article class="cap reveal"><span class="tag">Бекапи</span><p>Резервні копії центрального сервісу в S3-сумісне сховище, зашифровані офлайн-ключем.</p></article>
+        <article class="cap reveal"><span class="tag">Один вхід</span><p>Панель, API, агенти й бот працюють через один домен на порту 443. Caddy сам отримує сертифікат.</p></article>
+      </div>
+      <p class="notyet reveal">Ще немає:<span>вхід через OIDC</span><span>живий потік логів</span><span>консоль контейнера</span></p>
+    </div>
+  </section>
+
+  <section id="panel">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Справжні скриншоти</span>
+        <h2>Так виглядає панель</h2>
+        <p class="lede">Скриншоти з робочої інсталяції, тема forest. Листя на фоні — сезонна анімація, її можна вимкнути.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Сторінки панелі">
+          <button class="tab" role="tab" id="tab-stacks" aria-controls="shot-stacks" aria-selected="true">Стеки</button>
+          <button class="tab" role="tab" id="tab-stack" aria-controls="shot-stack" aria-selected="false">Стек</button>
+          <button class="tab" role="tab" id="tab-deploy" aria-controls="shot-deploy" aria-selected="false">Деплой</button>
+          <button class="tab" role="tab" id="tab-metrics" aria-controls="shot-metrics" aria-selected="false">Ресурси</button>
+          <button class="tab" role="tab" id="tab-roles" aria-controls="shot-roles" aria-selected="false">Ролі</button>
+          <button class="tab" role="tab" id="tab-phone" aria-controls="shot-phone" aria-selected="false">Телефон</button>
+      </div>
+        <figure class="shot" role="tabpanel" id="shot-stacks" aria-labelledby="tab-stacks"><div class="frame"><img src="img/panel/stacks-forest-dark.webp" width="1800" height="1124" alt="Список стеків сервера в панелі: джерело в git, розгорнутий коміт, доступ і швидкі дії" loading="eager" decoding="async"></div><figcaption>Стеки сервера: звідки береться compose-файл, який коміт розгорнуто, ваш доступ і швидкі дії.</figcaption></figure>
+        <figure class="shot" role="tabpanel" id="shot-stack" aria-labelledby="tab-stack" hidden><div class="frame"><img src="img/panel/stack-forest-dark.webp" width="1800" height="831" alt="Сторінка стеку з діями й контейнерами" loading="lazy" decoding="async"></div><figcaption>Сторінка стеку: Deploy, Deploy and pull images, Restart, Down і контейнери стеку.</figcaption></figure>
+        <figure class="shot" role="tabpanel" id="shot-deploy" aria-labelledby="tab-deploy" hidden><div class="frame"><img src="img/panel/deployment-forest-dark.webp" width="1800" height="1124" alt="Завершений деплой після push: коміт, час, тривалість і лог" loading="lazy" decoding="async"></div><figcaption>Деплой, запущений push у git: коміт, час початку й кінця, тривалість і лог.</figcaption></figure>
+        <figure class="shot" role="tabpanel" id="shot-metrics" aria-labelledby="tab-metrics" hidden><div class="frame"><img src="img/panel/metrics-forest-dark.webp" width="1800" height="1124" alt="Графіки CPU, пам'яті, мережі, диска й процесів контейнера за сім днів" loading="lazy" decoding="async"></div><figcaption>Ресурси контейнера за тиждень: CPU, пам'ять, мережа, диск і процеси. Трикутники позначають деплої.</figcaption></figure>
+        <figure class="shot" role="tabpanel" id="shot-roles" aria-labelledby="tab-roles" hidden><div class="frame"><img src="img/panel/user-forest-dark.webp" width="1800" height="1124" alt="Сторінка користувача з роллю на сервері й формою видачі ролі" loading="lazy" decoding="async"></div><figcaption>Ролі на весь сервер або на окремий стек.</figcaption></figure>
+        <figure class="shot phone" role="tabpanel" id="shot-phone" aria-labelledby="tab-phone" hidden><div class="frame"><img src="img/panel/mobile-forest-dark.webp" width="1173" height="2535" alt="Список стеків на телефоні" loading="lazy" decoding="async"></div><figcaption>Ті самі сторінки й дії на телефоні.</figcaption></figure>
+    </div>
+  </section>
+
   <section id="demo" class="band">
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">Панель · Discord · CLI</span>
         <h2>Одна дія, три способи</h2>
-        <p class="lede">Натисніть «Перезапустити» біля будь-якого контейнера або перемкніть сервер. У Discord бот сам повідомляє про впалий контейнер, а перезапустити його можна кнопкою під повідомленням.</p>
+        <p class="lede">Інтерактивний макет: натисніть «Перезапустити» біля контейнера або перемкніть сервер. У Discord бот сам повідомляє про впалий контейнер, а перезапустити його можна кнопкою під повідомленням.</p>
       </div>
       <div class="demo">
         <div class="window reveal" aria-label="Приклад вебпанелі">
@@ -416,7 +520,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
           </div>
           <div class="window reveal" aria-label="Приклад CLI forest">
             <div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="title">zsh · forest</span></div>
-            <div class="term" id="term"><span class="p">$</span> forest containers ls --env prod-kyiv</div>
+            <div class="term" id="term"><span class="p">$</span> forest container list -e prod-kyiv</div>
           </div>
         </div>
       </div>
@@ -433,36 +537,40 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
       </div>
       <div class="arch">
         <div class="diagram reveal">
-          <svg viewBox="0 0 900 430" role="img" aria-label="Схема: панель, Discord-бот і CLI звертаються до центрального агрегатора; агенти на серверах A і B самі підключаються до нього gRPC-стрімом; агрегатор читає конфігурацію з git">
+          <svg viewBox="0 0 900 430" role="img" aria-label="Схема: панель, Discord-бот, CLI і webhook git-сервера звертаються до центрального агрегатора через Caddy; агенти на серверах A і B самі підключаються до нього gRPC-стрімом; агрегатор читає конфігурацію з git">
             <!-- wires (static) + flows (animated) -->
-            <path class="wire" d="M200 82 C 290 82, 290 175, 350 175"/>
-            <path class="flow" d="M200 82 C 290 82, 290 175, 350 175"/>
-            <path class="wire" d="M200 215 L 350 215"/>
-            <path class="flow" d="M200 215 L 350 215"/>
-            <path class="wire" d="M200 348 C 290 348, 290 255, 350 255"/>
-            <path class="flow" d="M200 348 C 290 348, 290 255, 350 255"/>
+            <path class="wire" d="M200 53 C 290 53, 290 165, 350 165"/>
+            <path class="flow" d="M200 53 C 290 53, 290 165, 350 165"/>
+            <path class="wire" d="M200 153 C 280 153, 290 195, 350 195"/>
+            <path class="flow" d="M200 153 C 280 153, 290 195, 350 195"/>
+            <path class="wire" d="M200 253 C 280 253, 290 235, 350 235"/>
+            <path class="flow" d="M200 253 C 280 253, 290 235, 350 235"/>
+            <path class="wire" d="M200 353 C 290 353, 290 265, 350 265"/>
+            <path class="flow" d="M200 353 C 290 353, 290 265, 350 265"/>
             <path class="wire" d="M680 110 C 620 110, 620 180, 570 180"/>
             <path class="flow" d="M680 110 C 620 110, 620 180, 570 180"/>
             <path class="wire" d="M680 320 C 620 320, 620 250, 570 250"/>
             <path class="flow" d="M680 320 C 620 320, 620 250, 570 250"/>
             <path class="wire" d="M460 140 L 460 76"/>
             <path class="flow rev" d="M460 140 L 460 76"/>
-            <text class="lbl" x="214" y="112">HTTPS + SignalR</text>
-            <text class="lbl" x="238" y="206">gRPC</text>
-            <text class="lbl" x="214" y="330">HTTPS, API-токен</text>
+            <text class="lbl" x="208" y="43">HTTPS + SignalR</text>
+            <text class="lbl" x="208" y="143">gRPC</text>
+            <text class="lbl" x="208" y="243">HTTPS, API-токен</text>
+            <text class="lbl" x="208" y="343">webhook після push</text>
             <text class="lbl" x="590" y="146">gRPC-стрім</text>
             <text class="lbl" x="590" y="296">gRPC-стрім</text>
             <text class="lbl" x="472" y="112">git fetch</text>
             <!-- clients -->
-            <g class="node"><rect x="40" y="52" width="160" height="60" rx="12"/><text x="60" y="80">Вебпанель</text><text class="sub" x="60" y="98">React SPA</text></g>
-            <g class="node"><rect x="40" y="185" width="160" height="60" rx="12"/><text x="60" y="213">Discord-бот</text><text class="sub" x="60" y="231">ті самі права</text></g>
-            <g class="node"><rect x="40" y="318" width="160" height="60" rx="12"/><text x="60" y="346">CLI forest</text><text class="sub" x="60" y="364">скрипти, термінал</text></g>
+            <g class="node"><rect x="40" y="24" width="160" height="58" rx="12"/><text x="60" y="50">Вебпанель</text><text class="sub" x="60" y="68">React SPA, PWA</text></g>
+            <g class="node"><rect x="40" y="124" width="160" height="58" rx="12"/><text x="60" y="150">Discord-бот</text><text class="sub" x="60" y="168">ті самі права</text></g>
+            <g class="node"><rect x="40" y="224" width="160" height="58" rx="12"/><text x="60" y="250">CLI forest</text><text class="sub" x="60" y="268">скрипти, термінал</text></g>
+            <g class="node"><rect x="40" y="324" width="160" height="58" rx="12"/><text x="60" y="350">Git-сервер / CI</text><text class="sub" x="60" y="368">GitHub, Gitea, GitLab</text></g>
             <!-- core -->
             <g class="node core"><rect x="350" y="140" width="220" height="150" rx="16"/>
               <text x="370" y="174">Центральний</text><text x="370" y="194">агрегатор</text>
-              <text class="sub" x="370" y="224">права і ролі</text>
-              <text class="sub" x="370" y="244">розшифрування SOPS</text>
-              <text class="sub" x="370" y="264">SQLite</text></g>
+              <text class="sub" x="370" y="224">Caddy: один вхід, TLS</text>
+              <text class="sub" x="370" y="244">права, деплой, SOPS</text>
+              <text class="sub" x="370" y="264">SQLite, бекапи в S3</text></g>
             <g class="node"><rect x="380" y="30" width="160" height="46" rx="23"/><text x="404" y="58">Git-репозиторій</text></g>
             <!-- servers -->
             <g class="node srv"><rect x="680" y="40" width="190" height="140" rx="14"/>
@@ -478,7 +586,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
         <div class="points">
           <div class="point reveal"><h3>Жодних відкритих портів</h3><p>Docker API не виставляється в мережу. Сервери можуть стояти за NAT: з'єднання завжди починає агент.</p></div>
           <div class="point reveal"><h3>Лише відомі команди</h3><p>Агент виконує фіксований набір типізованих команд з Protocol Buffers. Команди «виконай довільний shell» немає.</p></div>
-          <div class="point reveal"><h3>Права живуть у центрі</h3><p>Ролі й секрети знає лише центральний сервіс. Панель, бот і CLI просто ховають недоступні дії.</p></div>
+          <div class="point reveal"><h3>Права живуть у центрі</h3><p>Секрети, політики й права зберігає і перевіряє лише центральний сервіс. Панель, бот і CLI просто ховають недоступні дії.</p></div>
         </div>
       </div>
     </div>
@@ -489,7 +597,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
       <div class="sec-head reveal">
         <span class="eyebrow">SOPS + age</span>
         <h2>Пароль у git, але прочитати його нікому</h2>
-        <p class="lede">Секрети шифруються окремим ключем для кожного сервера. Розшифровуються вони лише в центральному сервісі, безпосередньо перед розгортанням. Editor у своєму клоні репозиторію бачить їх відкритим текстом завдяки git-фільтру <code>forest</code>.</p>
+        <p class="lede">Секрети шифруються окремим ключем для кожного сервера або стеку. Розшифровуються вони лише в центральному сервісі, безпосередньо перед розгортанням. Editor у своєму клоні репозиторію бачить їх відкритим текстом завдяки git-фільтру <code>forest</code>.</p>
       </div>
       <div class="secrets">
         <div class="codecard reveal">
@@ -523,7 +631,7 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
       <div class="sec-head reveal">
         <span class="eyebrow">Ролі</span>
         <h2>Доступ на сервер або на один стек</h2>
-        <p class="lede">Роль видається на все середовище або на окремий стек. На стеку діє більша з двох ролей.</p>
+        <p class="lede">Роль видається на весь сервер або на окремий стек; на стеку діє більша з двох ролей. Адміністратора сервера призначає лише адміністратор системи і лише на весь сервер.</p>
       </div>
       <div class="roles-wrap reveal">
         <table class="roles">
@@ -532,22 +640,46 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
               <th scope="col">Viewer<small>дивиться</small></th>
               <th scope="col">Operator<small>перезапускає</small></th>
               <th scope="col">Editor<small>розгортає</small></th>
+              <th scope="col">Адмін сервера<small>керує сервером</small></th>
               <th scope="col">Admin<small>керує всім</small></th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">Стеки, стан і логи</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th scope="row">start / stop / restart</th><td class="no">–</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th scope="row">exec і консоль <small style="color:var(--fog-faint);font-weight:500">(у планах)</small></th><td class="no">–</td><td class="no">–</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th scope="row">Редагування стеку й деплой</th><td class="no">–</td><td class="no">–</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th scope="row">Користувачі й журнал аудиту</th><td class="no">–</td><td class="no">–</td><td class="no">–</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Стеки, стан, логи й графіки</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">start / stop / restart</th><td class="no">–</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Редагування стеку, деплой і відкат</th><td class="no">–</td><td class="no">–</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Compose-політика, ключі й ролі на сервері</th><td class="no">–</td><td class="no">–</td><td class="no">–</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Користувачі, сервери й журнал аудиту</th><td class="no">–</td><td class="no">–</td><td class="no">–</td><td class="no">–</td><td class="yes">✓</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="warn-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg>Editor на середовищі фактично має root на хості: compose-файл може змонтувати <code>/</code> або запустити privileged-контейнер. Видавайте цю роль свідомо.</p>
+      <p class="warn-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg><span>Editor на сервері фактично має root на хості: compose-файл може змонтувати <code>/</code> або запустити privileged-контейнер. Compose-політика сервера обмежує, що стекам можна, але цю роль однаково видавайте свідомо.</span></p>
     </div>
   </section>
 
-  <section id="compare" class="band">
+  <section id="themes" class="band">
+    <div class="wrap themes">
+      <div class="reveal">
+        <span class="eyebrow">Теми</span>
+        <h2 style="margin-top:16px">П'ять тем, кожна світла й темна</h2>
+        <p class="seasons">За замовчуванням forest. За сезонним фоном пролітають молоде листя навесні, метелики й тополиний пух улітку, падолист восени, сніг узимку або дощ цілий рік. Фон нічого не закриває і вимикається.</p>
+        <div class="swatches" role="group" aria-label="Тема панелі" style="margin-top:22px">
+          <button class="sw" type="button" data-theme-name="forest" aria-pressed="true" style="--c:#5f9a76"><i></i>forest</button>
+          <button class="sw" type="button" data-theme-name="meadow" aria-pressed="false" style="--c:#8fcf6f"><i></i>meadow</button>
+          <button class="sw" type="button" data-theme-name="lilac" aria-pressed="false" style="--c:#a77ef0"><i></i>lilac</button>
+          <button class="sw" type="button" data-theme-name="lake" aria-pressed="false" style="--c:#6a8ff0"><i></i>lake</button>
+          <button class="sw" type="button" data-theme-name="sunset" aria-pressed="false" style="--c:#f09a6a"><i></i>sunset</button>
+          <button class="sw" type="button" data-theme-name="picker" aria-pressed="false" style="--c:#c9d6c0"><i></i>сторінка «Appearance»</button>
+        </div>
+        <div class="mode" role="group" aria-label="Світла чи темна">
+          <button type="button" data-mode="dark" aria-pressed="true">Темна</button>
+          <button type="button" data-mode="light" aria-pressed="false">Світла</button>
+        </div>
+      </div>
+      <figure class="theme-view reveal" style="margin:0"><div class="frame"><img id="theme-img" src="img/panel/theme-forest-dark.webp" width="1000" height="625" alt="Список стеків у темі forest, темний варіант" loading="lazy" decoding="async"></div></figure>
+    </div>
+  </section>
+
+  <section id="compare">
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">Порівняння</span>
@@ -556,63 +688,72 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
       </div>
       <div class="cmp-wrap reveal">
         <table class="cmp">
-          <thead><tr><th scope="col"><span class="sr-only">Можливість</span></th><th scope="col">Portainer CE 2.45</th><th scope="col">Dockge 1.5</th><th scope="col">Komodo 2.3</th><th scope="col">Arcane</th><th scope="col" class="us">container-forest</th></tr></thead>
+          <thead><tr><th scope="col"><span class="sr-only">Можливість</span></th><th scope="col">Portainer CE 2.x</th><th scope="col">Dockge 1.5</th><th scope="col">Komodo 2.x</th><th scope="col">Arcane</th><th scope="col" class="us">container-forest</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Розвиток</th><td>заморожений, лише виправлення</td><td>повільний, форки</td><td>активний</td><td>активний</td><td class="us">навчальний проєкт, уже в продакшні</td></tr>
+            <tr><th scope="row">Розвиток</th><td>заморожений, лише виправлення</td><td>повільний, активні форки</td><td>активний</td><td>активний</td><td class="us">активний</td></tr>
+            <tr><th scope="row">Кілька серверів</th><td>так</td><td>так (агенти)</td><td>так</td><td>так (агенти)</td><td class="us">так</td></tr>
             <tr><th scope="row">Агент сам ініціює з'єднання</th><td>лише в Edge-режимі</td><td>—</td><td>так</td><td>так (Edge)</td><td class="us">так, це єдиний режим</td></tr>
-            <tr><th scope="row">Розгортання з git</th><td>так</td><td>ні</td><td>так</td><td>частково</td><td class="us">так, публічні й приватні репозиторії, після push</td></tr>
-            <tr><th scope="row">Секрети, зашифровані в git</th><td>ні</td><td>ні</td><td>ні</td><td>ні</td><td class="us">так, окремий ключ на сервер</td></tr>
+            <tr><th scope="row">Деплой з git</th><td>так</td><td>ні</td><td>так</td><td>частково</td><td class="us">так: публічні й приватні репозиторії, після push, з CI</td></tr>
+            <tr><th scope="row">Секрети, зашифровані в git</th><td>ні</td><td>ні</td><td>ні</td><td>ні</td><td class="us">так: SOPS, age-ключ на сервер або стек</td></tr>
             <tr><th scope="row">Ролі на сервер і окремий стек</th><td>на сервер</td><td>ні</td><td>так</td><td>на всю систему</td><td class="us">так</td></tr>
-            <tr><th scope="row">Керування з Discord</th><td>ні</td><td>ні</td><td>ні</td><td>ні</td><td class="us">так, команди й меню з тими самими правами</td></tr>
+            <tr><th scope="row">Керування з Discord</th><td>ні</td><td>ні</td><td>ні</td><td>ні</td><td class="us">так: команди й меню з тими самими правами</td></tr>
             <tr><th scope="row">Сповіщення в Discord</th><td>ні</td><td>ні</td><td>webhook'ом, лише текст</td><td>—</td><td class="us">через бота, з кнопками «Restart» і «Logs»</td></tr>
             <tr><th scope="row">restart / redeploy / redeploy with pull / down</th><td>ні</td><td>частково</td><td>так</td><td>частково</td><td class="us">так</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="honest">У чому поступаємося: зрілість, кількість функцій, підтримка Swarm і Kubernetes, збірка образів, розмір спільноти. Стан аналогів на жовтень 2026 року; «—» означає, що даних ми не знайшли.</p>
+      <p class="honest">У чому поступаємося: зрілість, кількість функцій, Swarm і Kubernetes, збірка образів, OIDC (поки немає), консоль контейнера, розмір спільноти. Стан на осінь 2026 року; «—» означає, що даних ми не знайшли. Детальніше в <a href="https://github.com/container-forest/container-forest/blob/main/docs/comparison.md" target="_blank" rel="noopener">docs/comparison.md</a>.</p>
     </div>
   </section>
 
-  <section id="roadmap">
+  <section id="start" class="band">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">Дорожня карта</span>
-        <h2>Що вже росте і що посаджено</h2>
+        <span class="eyebrow">Швидкий старт</span>
+        <h2>Встановлення за кілька хвилин</h2>
       </div>
-      <div class="road">
-        <article class="stage now reveal">
-          <header><h3>Уже працює</h3><span class="pill run"><i></i>у продакшні з жовтня</span></header>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Агент на кожному сервері: реєстрація за одноразовим токеном, статус онлайн і офлайн</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Контейнери, їхній стан і логи; запуск, зупинка, перезапуск</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Деплой стеку з публічного чи приватного git-репозиторію: вручну, після push або з CI; історія деплоїв з прив'язкою до комітів</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Секрети SOPS з окремим ключем для кожного сервера; у клоні репозиторію їх редагують відкритим текстом через <code>forest</code></span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Окремі дії restart, redeploy, redeploy with pull і down</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Ролі Viewer, Operator, Editor, Admin на сервер або на стек, журнал аудиту</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Вхід за паролем, passkey або через Discord</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Discord-бот з командами, меню й сповіщеннями: деплої, падіння контейнерів, агенти офлайн</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>CLI <code>forest</code>: вхід через браузер і API-токени з обмеженнями (лише читання, окремі сервери, строк дії)</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Деплой лише комітів, підписаних SSH-ключем користувача або підтверджених у панелі</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Панель українською й англійською, з оновленнями наживо, версткою для телефона і встановленням як застосунок</span></li>
-          </ul>
-        </article>
-        <article class="stage next reveal">
-          <header><h3>Ще в планах</h3><span class="pill stop"><i></i>заплановано</span></header>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"/></svg><span>2FA і вхід через OIDC</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"/></svg><span>Відкат деплою з панелі, графіки використання ресурсів</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"/></svg><span>Живий потік логів, консоль контейнера</span></li>
-          </ul>
-        </article>
+      <p class="req">Потрібен хост з Docker і DNS-ім'ям, на яке відкриті порти 80 і 443, для центрального сервісу, і Docker на кожному сервері, яким ви хочете керувати.</p>
+      <ol class="steps">
+        <li class="step reveal"><div>
+          <h3>Запустіть агрегатор і панель на центральному хості</h3>
+          <div class="cmd"><pre id="cmd-1">mkdir -p /srv/container-forest &amp;&amp; cd /srv/container-forest
+curl -fsSLO https://raw.githubusercontent.com/container-forest/container-forest/main/deploy/aggregator/compose.yaml
+cat &gt; .env &lt;&lt;'EOF'
+CF_DOMAIN=forest.example.com
+CF_BOOTSTRAP__ADMINUSERNAME=admin
+CF_BOOTSTRAP__ADMINPASSWORD=change-me-to-12+-chars
+EOF
+chmod 600 .env
+docker compose up -d</pre><button class="act" type="button" data-copy="cmd-1">Копіювати</button></div>
+          <p>Caddy сам отримає сертифікат Let's Encrypt для <code>CF_DOMAIN</code>. Увійдіть на <code>https://forest.example.com</code>, а потім приберіть два рядки <code>CF_BOOTSTRAP__*</code>.</p>
+        </div></li>
+        <li class="step reveal"><div>
+          <h3>Додайте сервер</h3>
+          <p>У панелі відкрийте <i>Environments → New environment</i>. Панель покаже одноразовий токен і готовий <code>compose.yaml</code> для агента. Запустіть його на сервері командою <code>docker compose up -d</code>, і сервер з'явиться в панелі онлайн.</p>
+        </div></li>
+        <li class="step reveal"><div>
+          <h3>Розгорніть стек</h3>
+          <p>Додайте git-репозиторій (для приватного спершу підключення до git-сервера з токеном лише на читання) і створіть стек: репозиторій, гілка і шлях до <code>compose.yaml</code>. Натисніть <i>Deploy</i> або ввімкніть деплой після push.</p>
+        </div></li>
+        <li class="step reveal"><div>
+          <h3>За бажанням: CLI і Discord-бот</h3>
+          <p>Завантажте <code>forest</code> з останнього релізу для Linux, macOS чи Windows і увійдіть:</p>
+          <div class="cmd"><pre id="cmd-2">forest login https://forest.example.com</pre><button class="act" type="button" data-copy="cmd-2">Копіювати</button></div>
+        </div></li>
+      </ol>
+      <div class="links-row">
+        <a class="btn btn-sun" href="https://github.com/container-forest/container-forest/blob/main/docs/installation.md" target="_blank" rel="noopener">Повна інструкція зі встановлення</a>
+        <a class="btn btn-ghost" href="https://github.com/container-forest/container-forest/releases/latest" target="_blank" rel="noopener">Останній реліз</a>
       </div>
     </div>
   </section>
 
-  <section id="team" class="band">
+  <section id="team">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">ІПС-22 · курс ООП</span>
+        <span class="eyebrow">Автори</span>
         <h2>Хто стоїть за проєктом</h2>
+        <p class="lede">container-forest започаткували у 2026 році четверо розробників. Систему проєктують і рецензують люди, а більшість коду пишуть AI-агенти: кожна їхня зміна проходить те саме рев'ю, CI і тести.</p>
       </div>
       <div class="team">
         <article class="member reveal"><span class="ring" style="--c:#efc27c">БП</span><h3>Богдан Петренко</h3><p>Team Lead, архітектура й безпека. Центральний сервіс, агент, DevOps.</p><a href="https://github.com/lepterion" target="_blank" rel="noopener">@lepterion</a></article>
@@ -625,20 +766,23 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
 
   <section class="final">
     <div class="wrap">
-      <span class="eyebrow">Відкритий код</span>
+      <span class="eyebrow">Відкритий код · Apache-2.0</span>
       <h2 class="reveal">Загляньте в ліс зсередини</h2>
-      <p class="lede">C# і .NET 10, React і TypeScript, gRPC, SOPS і age. Архітектура й рішення описані в документації репозиторію.</p>
+      <p class="lede">C# і .NET 10, React і TypeScript, gRPC, SOPS і age. Архітектура, інваріанти безпеки й рішення описані в документації. Баг-репорти, ідеї й pull request'и вітаються.</p>
       <div class="install">
-        <code id="clone"><span>$</span> git clone https://github.com/lepterion/container-forest.git</code>
-        <button class="act" id="copy-clone" type="button">Копіювати</button>
+        <code id="clone"><span>$</span> git clone https://github.com/container-forest/container-forest.git</code>
+        <button class="act" type="button" data-copy="clone">Копіювати</button>
       </div>
-      <a class="btn btn-sun" href="https://github.com/lepterion/container-forest" target="_blank" rel="noopener">Відкрити репозиторій</a>
+      <div class="links-row" style="margin-top:0">
+        <a class="btn btn-sun" href="https://github.com/container-forest/container-forest" target="_blank" rel="noopener">Відкрити репозиторій</a>
+        <a class="btn btn-ghost" href="https://container-forest.github.io/container-forest/" target="_blank" rel="noopener">Довідник API</a>
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="foot">
-  <div class="wrap"><span>container-forest · альфа-версія · 2026</span><span>Навчальний проєкт курсу ООП, ІПС-22</span></div>
+  <div class="wrap"><span>container-forest · v0.12 · 2026</span><span>Відкритий код під ліцензією Apache-2.0 · <a href="https://github.com/container-forest" target="_blank" rel="noopener">github.com/container-forest</a></span></div>
 </footer>
 
 <style>.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>
@@ -749,10 +893,12 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
       '\n<span class="ok">●</span> shop-web   працює    12 д',
       '\n<span class="ok">●</span> postgres   працює    31 д',
       '\n<span class="ok">●</span> worker     працює    щойно',
-      '\n\n<span class="p">$</span> forest stack redeploy shop --pull',
+      '\n\n<span class="p">$</span> forest stack deploy shop -e prod-kyiv --pull',
       '\n  pull   ghcr.io/team/shop-api:1.4.2  <span class="ok">ok</span>',
       '\n  up     shop-api shop-web            <span class="ok">ok</span>',
       '\n<span class="ok">✓</span> shop розгорнуто з коміту a41c9e2',
+      '\n\n<span class="p">$</span> forest stack rollback shop -e prod-kyiv --to 9f02b17',
+      '\n<span class="ok">✓</span> shop повернуто на 9f02b17 і притримано',
     ];
     for (const l of lines) { await wait(420); term.insertAdjacentHTML('beforeend', l); }
     term.insertAdjacentHTML('beforeend', '\n<span class="p">$</span> <span class="caret"></span>');
@@ -783,12 +929,55 @@ footer.foot .wrap { display: flex; justify-content: space-between; gap: 14px; fl
     run(); if (!reduce) secTimer = setInterval(run, 5200);
   }, { threshold: 0.4 }).observe(document.getElementById('secrets'));
 
-  // ---- copy clone command
-  document.getElementById('copy-clone').addEventListener('click', async (e) => {
-    const btn = e.currentTarget, text = 'git clone https://github.com/lepterion/container-forest.git';
+  // ---- copy buttons: data-copy names the element whose text is copied
+  document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+    const el = document.getElementById(btn.dataset.copy);
+    const text = el.textContent.replace(/^\$\s*/, '').trim();
     try { await navigator.clipboard.writeText(text); btn.textContent = 'Скопійовано'; }
-    catch { const r = document.createRange(); r.selectNodeContents(document.getElementById('clone')); getSelection().removeAllRanges(); getSelection().addRange(r); btn.textContent = 'Виділено'; }
+    catch { const r = document.createRange(); r.selectNodeContents(el); getSelection().removeAllRanges(); getSelection().addRange(r); btn.textContent = 'Виділено'; }
     setTimeout(() => (btn.textContent = 'Копіювати'), 1800);
+  }));
+
+  // ---- panel screenshots: tabs
+  const tabEls = [...document.querySelectorAll('.tab')];
+  const selectTab = (t) => {
+    tabEls.forEach(x => {
+      const on = x === t;
+      x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  };
+  tabEls.forEach((t, i) => {
+    t.tabIndex = i ? -1 : 0;
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
+      const n = tabEls[(i + d + tabEls.length) % tabEls.length]; selectTab(n); n.focus();
+    });
   });
+
+  // ---- theme picker: five themes x light/dark
+  const timg = document.getElementById('theme-img');
+  let tname = 'forest', tmode = 'dark';
+  const NAMES = { picker: 'сторінка Appearance' };
+  const showTheme = () => {
+    const src = `img/panel/theme-${tname}-${tmode}.webp`;
+    if (timg.getAttribute('src') === src) return;
+    timg.classList.add('fading');
+    const pre = new Image(); pre.onload = pre.onerror = () => {
+      timg.src = src; timg.alt = `${tname === 'picker' ? 'Сторінка Appearance з налаштуваннями фону й вибором теми' : 'Список стеків у темі ' + tname}, ${tmode === 'dark' ? 'темний' : 'світлий'} варіант`;
+      timg.classList.remove('fading');
+    }; pre.src = src;
+  };
+  document.querySelectorAll('.sw').forEach(b => b.addEventListener('click', () => {
+    tname = b.dataset.themeName;
+    document.querySelectorAll('.sw').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    showTheme();
+  }));
+  document.querySelectorAll('.mode button').forEach(b => b.addEventListener('click', () => {
+    tmode = b.dataset.mode;
+    document.querySelectorAll('.mode button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    showTheme();
+  }));
 })();
 </script>
