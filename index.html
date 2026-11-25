@@ -3,11 +3,20 @@
 <head>
 <meta charset="utf-8">
 <title>Container Forest</title>
-<meta http-equiv="refresh" content="0; url=landing-site/">
 <link rel="canonical" href="landing-site/">
-<script>location.replace("landing-site/" + location.hash);</script>
+<script>
+  // The language the visitor chose on the page, otherwise Ukrainian for Ukrainian browsers and English for the rest.
+  var lang = null;
+  try { lang = localStorage.getItem("cf-lang"); } catch (e) {}
+  if (lang !== "uk" && lang !== "en") {
+    var langs = navigator.languages || [navigator.language || ""];
+    lang = langs.some(function (l) { return /^uk\b/i.test(l); }) ? "uk" : "en";
+  }
+  location.replace("landing-site/" + (lang === "en" ? "en.html" : "") + location.hash);
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=landing-site/"></noscript>
 </head>
 <body>
-<a href="landing-site/">Container Forest</a>
+<a href="landing-site/">Container Forest</a> · <a href="landing-site/en.html">English</a>
 </body>
 </html>
